@@ -1,0 +1,41 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+.inner_container {
+    position: relative;
+    width: 400px;
+  }
+
+  input {
+    padding: 10px;
+    font-size: 16px;
+    width: 100%;
+  }
+  
+
+  .filter_name_list li {
+    padding: 12px;
+    cursor: pointer;
+  }
+  .filter_name_list {
+    list-style: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    background-color: #fff;
+    border: 1px solid #ccc;
+
+ 
+  }
+  strong {
+    font-weight: bold;
+  }
+  .filter_name_list li:hover {
+    background-color: #f2f2f2;
+  }
+ 
