@@ -1,35 +1,46 @@
 import React, { useState, useEffect, ChangeEvent } from 'react';
 import './autoComplete.css';
-
+import {DummyData} from './DummyData';
 const AutoComplete = () => {
   //Creating a UseState in order to setInputVal and for filtering name
   const [inputVal, setInputVal] = useState<string>('');
   const [filterName, setFilterName] = useState<string[]>([]);
 
   useEffect(() => {
-    const filterData = async (input: string) => {
-      // fetching the Api 
-      fetch('http://jsonplaceholder.typicode.com/comments')
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error('Failed to fetch the data');
-          }
-          return response.json();
-        })
-        // if response is Ok then storing data 
-        .then((data) => {
-          console.log(data);
-          //if user type anything and we are doing filter for filtering Name from Data
-          const userName = data.map((item: { name: string }) => item.name);
-          return userName.filter((username:any) =>
-            username.toLowerCase().includes(input.toLowerCase())
-          );
-        })
-        .then((data) => setFilterName(data))
-        .catch((error) => {
-          console.error(error.message);
-        });
+    //It is commented because CORS Error is coming and now using DummyJSON 
+    // const filterData = async (input: string) => {
+    //   // fetching the Api 
+    //   fetch('http://jsonplaceholder.typicode.com/comments')
+    //     .then((response) => {
+    //       if (!response.ok) {
+    //         throw new Error('Failed to fetch the data');
+    //       }
+    //       return response.json();
+    //     })
+    //     // if response is Ok then storing data 
+    //     .then((data) => {
+    //       console.log(data);
+    //       //if user type anything and we are doing filter for filtering Name from Data
+    //       const userName = data.map((item: { name: string }) => item.name);
+    //       return userName.filter((username:any) =>
+    //         username.toLowerCase().includes(input.toLowerCase())
+    //       );
+    //     })
+    //     .then((data) => setFilterName(data))
+    //     .catch((error) => {
+    //       console.error(error.message);
+    //     });
+    // };
+    // filterData(inputVal);
+    const filterData = (input: string) => {
+      const data = DummyData;
+      const userName = data.map((item: { name: string }) => item.name);
+      const filteredData = userName.filter((username: any) =>
+        username.toLowerCase().includes(input.toLowerCase())
+      );
+      setFilterName(filteredData);
     };
+
     filterData(inputVal);
   }, [inputVal]);// this will trigger if user enter an character or type anything
 
